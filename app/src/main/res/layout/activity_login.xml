@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+                android:background="@drawable/background"
+    tools:context="com.mabe.productions.prisiukantraste.LoginActivity">
+
+
+    <ImageButton
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:scaleType="centerCrop"
+        android:background="@null"
+        android:id="@+id/facebook"
+        android:src="@drawable/fb_icon"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="100dp"
+        android:layout_alignParentLeft="true"/>
+
+    <ImageButton
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:scaleType="centerCrop"
+        android:background="@null"
+        android:id="@+id/gmail"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/googleplus_icon"/>
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_marginTop="70dp"
+        android:id="@+id/bottom_patch"
+        android:layout_marginLeft="145dp"
+        android:src="@drawable/ic_bottom_patch"
+        android:layout_height="110dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/top_patch"
+        android:layout_marginLeft="110dp"
+        android:src="@drawable/ic_top_patch"
+        android:layout_height="100dp"/>
+
+    <ImageView
+        android:layout_width="4dp"
+        android:layout_height="80dp"
+        android:background="#FFFFFF"
+        android:id="@+id/divider_line"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prisijunkite su..."
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:id="@+id/login_with"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+
+</RelativeLayout>

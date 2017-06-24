@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:id="@+id/custom_layout_title"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/child_root_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/custom_title"
+            android:textColor="#2c3e50"
+            android:maxWidth="230dp"
+            android:text="Skvernelis daro prikolus sessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssime"/>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="60dp"
+            android:id="@+id/vote_button"
+            android:textColor="#000000"
+            android:text="25"
+            android:clickable="false"
+            android:textSize="12dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_no_voted"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

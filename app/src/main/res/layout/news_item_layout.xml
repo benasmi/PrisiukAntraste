@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+              android:orientation="vertical"
+    android:background="#FFFFFF"
+                android:layout_height="wrap_content"
+    >
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:id="@+id/news_icon"-->
+            <!--android:src="@drawable/min15_logo"-->
+            <!--android:padding="8dp"/>-->
+
+
+        <!--<ImageView-->
+            <!--android:id="@+id/useless_dot"-->
+            <!--android:layout_width="4dp"-->
+            <!--android:layout_height="4dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_toRightOf="@+id/news_icon"-->
+            <!--android:src="@drawable/dot"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:textColor="#000"-->
+            <!--android:id="@+id/date_news_feed"-->
+            <!--android:text="15min"-->
+            <!--android:layout_toRightOf="@id/useless_dot"/>-->
+
+    <!--</RelativeLayout>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/news_preview"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            />
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/news_preview"
+            android:background="@drawable/gradient_background"
+            android:padding="10dp"
+            android:text="S. Skvernelis Seimo posėdžių salėje išskyrė M. Majauską ir I. Šiaulienę"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"/>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/app_icon_black"
+            android:id="@+id/change_title_ic"
+            android:padding="7dp"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/share_icon"
+            android:src="@drawable/share_icon"
+            android:layout_toRightOf="@id/change_title_ic"
+            android:padding="7dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        android:id="@+id/titleCount"
+        android:paddingLeft="7dp"
+        android:text="5 Antraštės"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/custom_titles_recyclerview"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

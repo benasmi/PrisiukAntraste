@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_choose_newspapper"
+    android:layout_width="match_parent"
+
+                android:background="#FFF"
+    android:layout_height="match_parent"
+    tools:context="com.mabe.productions.prisiukantraste.ChooseNewspapper">
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--android:id="@+id/pasirinkite_dienrasti"-->
+        <!--android:text="Pasirinkite dienraštį"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:textSize="35dp"/>-->
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_below="@+id/pasirinkite_dienrasti"-->
+        <!--android:text="...Ir pradėkite naršyti..."-->
+        <!--android:textSize="35dp"/>-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/prisiuk_txt"
+        android:textSize="55dp"
+        android:textColor="#000"
+        android:layout_marginTop="45dp"
+        android:text="Prisiūk"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/prisiuk_txt"
+        android:id="@+id/antraste_txt"
+        android:textSize="55dp"
+        android:layout_marginTop="-45dp"
+        android:textColor="#000"
+        android:text="antraštę"/>
+
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:id="@+id/grid_layout"
+        android:rowCount="2">
+
+        <ImageButton
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.90"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/lrytas_btn"
+            android:scaleType="centerCrop"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:src="@drawable/lrytas_logo"/>
+
+        <ImageButton
+            android:id="@+id/delfi_btn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0.90"
+            android:scaleType="centerCrop"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:src="@drawable/delfi_logo"/>
+
+        <ImageButton
+            android:id="@+id/alfa_btn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:alpha="0.90"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:src="@drawable/alfa_logo"/>
+
+        <ImageButton
+            android:id="@+id/min15_btn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@null"
+            android:alpha="0.90"
+            android:scaleType="centerCrop"
+            android:layout_column="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_row="1"
+            android:src="@drawable/min15_logo"/>
+
+
+
+    </GridLayout>
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mabe.productions.prisiukantraste">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_app_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <service
+        android:name=".MyFirebaseMessagingService">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+        </intent-filter>
+    </service>
+
+        <service
+            android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+
+        <activity
+            android:name="com.mabe.productions.prisiukantraste.LoginActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme" />
+        <activity
+            android:name="com.mabe.productions.prisiukantraste.WebViewActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme"></activity>
+        <activity
+            android:name="com.mabe.productions.prisiukantraste.ChooseNewspapper"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme">
+
+        </activity>
+        <activity android:name="com.mabe.productions.prisiukantraste.StartingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme"
+            >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.mabe.productions.prisiukantraste.NewsFeedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme" />
+
+        <!-- Job scheduler: -->
+
+        <service
+            android:name="com.evernote.android.job.v21.PlatformJobService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.evernote.android.job.v14.PlatformAlarmService"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.evernote.android.job.v14.PlatformAlarmReceiver"
+            android:exported="false">
+            <intent-filter>
+
+                <!-- Keep the filter for legacy intents -->
+                <action android:name="com.evernote.android.job.v14.RUN_JOB" />
+                <action android:name="net.vrallev.android.job.v14.RUN_JOB" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.evernote.android.job.JobBootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.evernote.android.job.gcm.PlatformGcmService"
+            android:enabled="false"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.evernote.android.job.JobRescheduleService"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

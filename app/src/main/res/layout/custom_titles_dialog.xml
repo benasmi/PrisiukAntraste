@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="#FFFFFF"
+                android:id="@+id/main_layout"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/logo_15min"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/min15_logo"
+            />
+
+        <ImageView
+            android:id="@+id/useless_dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/logo_15min"
+            android:src="@drawable/dot"/>
+
+
+        <TextView
+            android:id="@+id/date_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/useless_dot"
+            android:gravity="center"
+            android:text="Prieš 5h"
+            android:textColor="#000000"
+            android:textSize="25dp"/>
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:overScrollMode="never"
+        android:id="@+id/custom_titles_recyclerview"
+        android:layout_height="wrap_content"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:hint="Pasiūlyk antraštę!"
+            android:layout_alignParentLeft="true"
+            android:drawablePadding="7dp"
+            android:layout_toLeftOf="@+id/add_custom_title_btn"
+            android:padding="10dp"
+            android:maxLength="100"
+            android:inputType="textCapSentences"
+            android:id="@+id/add_custom_title"
+            android:background="@android:color/transparent"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/add_custom_title_btn"
+            android:scaleType="centerCrop"
+            android:padding="8dp"
+            android:src="@drawable/app_icon_black_single_patch"
+            android:layout_height="50dp" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>

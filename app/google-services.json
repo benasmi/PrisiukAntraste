@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "626288531042",
+    "firebase_url": "https://prisiuk-antraste-8ff36.firebaseio.com",
+    "project_id": "prisiuk-antraste-8ff36",
+    "storage_bucket": "prisiuk-antraste-8ff36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626288531042:android:874487cb06b4e673",
+        "android_client_info": {
+          "package_name": "com.mabe.productions.prisiukantraste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626288531042-llh3uckjbv99sl2nvjpj3v4fudls0r5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCglv10rOKqj_2fZJyWrhbONL41MqN6OFM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

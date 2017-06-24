@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:id="@+id/header_layout"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/news_icon_header"
+            android:src="@drawable/min15_logo"
+            android:padding="8dp"/>
+
+
+        <ImageView
+            android:id="@+id/useless_dot_header"
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/news_icon_header"
+            android:src="@drawable/dot"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:textColor="#000"
+            android:id="@+id/date_news_feed_header"
+            android:text="15min"
+            android:layout_toRightOf="@id/useless_dot_header"/>
+
+    </RelativeLayout>
+

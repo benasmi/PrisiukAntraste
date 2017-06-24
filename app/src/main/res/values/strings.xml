@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Prisiūk antraštę</string>
+    <string name="facebook_app_key">1336184646468364</string>
+    <string name="facebook_app_secret">41e424d3a0200510461480d448748644</string>
+    <string name="googleplus_client_id">898915441780-lvnc8non07h9ugg147mebe8c8uef9434.apps.googleusercontent.com</string>
+</resources>
