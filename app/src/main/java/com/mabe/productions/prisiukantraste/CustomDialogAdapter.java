@@ -216,9 +216,14 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
                             addVotedTitleToSharedPrefs(url, titleItems.get(global_position).getTitle());
                         }
 
-                        CheckingUtils.sortArray(titleItems);
 
-                        notifyDataSetChanged();
+                        CheckingUtils.sortArray(titleItems);
+                        notifyItemRangeChanged(0, getItemCount());
+
+
+
+
+
                     }
                 });
 
@@ -273,7 +278,6 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
 
         return "";
     }
-
 
 
 

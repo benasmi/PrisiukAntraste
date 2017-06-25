@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Benas on 19/04/2017.
@@ -147,8 +148,8 @@ public class CheckingUtils {
             @Override
             public int compare(TitleItem o1, TitleItem o2) {
                 return  o2.getPoints() - o1.getPoints();
-            }
-        });
+    }
+});
 }
 
     public static Drawable resizeDrawable(Context context, int imageResource){
@@ -237,5 +238,6 @@ public class CheckingUtils {
         return titleCount + " antraštės";
 
     }
+
 
 }
