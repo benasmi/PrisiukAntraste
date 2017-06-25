@@ -48,28 +48,31 @@
 
 
 
-<android.support.v4.widget.SwipeRefreshLayout
+<com.baoyz.widget.PullRefreshLayout
     android:layout_width="wrap_content"
     android:id="@+id/refresh_layout"
     android:layout_below="@+id/my_toolbar"
+    app:refreshType="smartisan"
     android:layout_height="wrap_content">
 
-    <FrameLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="wrap_content"
+        android:focusable="false"
+        android:clickable="false"
         android:layout_height="wrap_content">
+
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:background="#FFF"
             android:layout_height="match_parent"
             android:id="@+id/recycler_view">
         </android.support.v7.widget.RecyclerView>
 
-    </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
 
 
-</android.support.v4.widget.SwipeRefreshLayout>
+</com.baoyz.widget.PullRefreshLayout>
 
 
 </RelativeLayout>

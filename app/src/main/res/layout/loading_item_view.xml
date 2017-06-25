@@ -2,13 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
     android:background="#FFFFFF"
+
               android:layout_height="50dp"
                                    >
-
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/loading"/>
+    <com.github.rahatarmanahmed.cpv.CircularProgressView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progress_view"
+        android:layout_width="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="35dp"
+        app:cpv_animAutostart="true"
+        app:cpv_indeterminate="true" />
 
 
 </RelativeLayout>

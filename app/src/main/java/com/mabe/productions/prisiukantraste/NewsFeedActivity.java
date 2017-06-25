@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.brandongogetap.stickyheaders.StickyLayoutManager;
 import com.brandongogetap.stickyheaders.exposed.StickyHeaderListener;
 import com.evernote.android.job.Job;
@@ -36,10 +37,9 @@ public class NewsFeedActivity extends AppCompatActivity {
     private ImageView back_icon;
     //private ImageView settings;
     private String type_txt;
-
     private NewsAdapter adapter;
     private boolean doubleBackToExitPressedOnce = false;
-
+    private PullRefreshLayout layout;
 
     @Override
     public void onBackPressed() {
@@ -155,7 +155,7 @@ public class NewsFeedActivity extends AppCompatActivity {
         OnFinishListener onFinishListener = new OnFinishListener() {
             @Override
             public void onFinish(int responseCode) {
-
+                layout.setRefreshing(false);
                 adapter.refreshPosts(type, false);
                 adapter.add(new NewsItem(NewsItem.TYPE_LOADING), adapter.newsItems.size());
             }
@@ -187,7 +187,28 @@ public class NewsFeedActivity extends AppCompatActivity {
 
         adapter = new NewsAdapter(this, info, type);
 
-        StickyLayoutManager layoutManager = new TopSnappedStickyLayoutManager(this, adapter);
+
+
+        layout = (PullRefreshLayout) findViewById(R.id.refresh_layout);
+        layout.setEnabled(true);
+        layout.setRefreshing(true);
+        layout.setColor(Color.parseColor("#3498db"));
+        layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new ServerManager(NewsFeedActivity.this, type_txt, false, new OnFinishListener() {
+                    @Override
+                    public void onFinish(@Nullable int responseCode) {
+                        adapter.newsItems.clear();
+                        adapter.refreshPosts(type, false);
+                        adapter.newsItems.add(new NewsItem(NewsItem.TYPE_LOADING));
+                        layout.setRefreshing(false);
+                    }
+                }).execute("0");
+            }
+        });
+
+        final StickyLayoutManager layoutManager = new TopSnappedStickyLayoutManager(this, adapter);
         layoutManager.elevateHeaders(true);
         layoutManager.setStickyHeaderListener(new StickyHeaderListener() {
             @Override
@@ -204,28 +225,24 @@ public class NewsFeedActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-
-        final SwipeRefreshLayout refresh_layout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
-        refresh_layout.setEnabled(true);
-        refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh() {
-                new ServerManager(NewsFeedActivity.this, type_txt, false, new OnFinishListener() {
-                    @Override
-                    public void onFinish(@Nullable int responseCode) {
-                            adapter.newsItems.clear();
-                            adapter.refreshPosts(type, false);
-                            adapter.newsItems.add(new NewsItem(NewsItem.TYPE_LOADING));
-                            refresh_layout.setRefreshing(false);
-                    }
-                }).execute("0");
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                //Tocheck if  recycler is on top
+                if(layoutManager.findFirstCompletelyVisibleItemPosition()==0){
+                    layout.setEnabled(true);
+                }else{
+                    layout.setEnabled(false);
+                }
+        }
+    });
 
-            }
-        });
+
+
 
     }
-
 
 
 }

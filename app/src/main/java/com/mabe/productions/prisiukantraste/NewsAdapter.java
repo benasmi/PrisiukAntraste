@@ -292,7 +292,6 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
             case NewsItem.TYPE_POST:
 
 
-
                 String description = item.getDescription();
                 String image_url = item.getImageUrl();
                 String title = item.getTitle();
