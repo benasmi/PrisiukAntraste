@@ -321,7 +321,6 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                                 .setDuration(700)
                                 .start();
 
-
                     }else{
                         holder.rootView.setTranslationY(0);
                     }
@@ -332,7 +331,7 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                             .load(item.getImageUrl())
                             .fitCenter()
                             .crossFade()
-                            .error(R.drawable.ic_no_image)
+                            .error(R.drawable.failed_loading)
                             .animate(R.anim.fade)
                             .override(400,item.getImageHeight())
                             .into(holder.preview_img);

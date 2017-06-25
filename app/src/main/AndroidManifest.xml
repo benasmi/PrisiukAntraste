@@ -16,54 +16,44 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <service
-        android:name=".MyFirebaseMessagingService">
-        <intent-filter>
-            <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-        </intent-filter>
-    </service>
-
-        <service
-            android:name=".MyFirebaseInstanceIDService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-
         <activity
-            android:name="com.mabe.productions.prisiukantraste.LoginActivity"
+            android:name=".LoginActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
-            android:name="com.mabe.productions.prisiukantraste.WebViewActivity"
+            android:name=".WebViewActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme" />
+        <activity
+            android:name=".ChooseNewspapper"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme"></activity>
         <activity
-            android:name="com.mabe.productions.prisiukantraste.ChooseNewspapper"
-            android:noHistory="true"
+            android:name=".StartingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme">
-
-        </activity>
-        <activity android:name="com.mabe.productions.prisiukantraste.StartingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/LoginTheme"
-            >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
-            android:name="com.mabe.productions.prisiukantraste.NewsFeedActivity"
+            android:name=".NewsFeedActivity"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
 
@@ -111,6 +101,12 @@
             android:name="com.evernote.android.job.JobRescheduleService"
             android:exported="false" />
 
+        <activity android:name=".SettingsActivity"
+            android:theme="@style/LoginTheme"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
     </application>
 
 </manifest>

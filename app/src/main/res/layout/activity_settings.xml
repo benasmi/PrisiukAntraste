@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_settings"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.mabe.productions.prisiukantraste.SettingsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/settings_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FFFF"
+        android:elevation="4dp"
+        android:theme="@style/AppThemeBar"
+        app:popupTheme="@style/AppThemeBar">
+
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_gravity="left"
+            android:layout_height="30dp"
+            android:id="@+id/back_icon"
+            android:src="@drawable/ic_left_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:id="@+id/settings_txt"
+            android:layout_gravity="left"
+            android:layout_marginLeft="40dp"
+            android:textSize="20dp"
+            android:text="Nustatymai"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRANEŠIMAI"
+                    android:textColor="#000"
+                    android:id="@+id/pranesimai"
+                    android:textSize="18dp"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#bdc3c7"
+                    android:layout_below="@id/pranesimai"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/min15logo"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/min15_logo"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gauti pranešimus iš 15min.lt"
+                    android:textColor="#000"
+                    android:id="@+id/getMessages_from15min"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="16dp"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/min15logo"/>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:theme="@style/MySwitch"
+                    android:layout_height="30dp"
+                    android:id="@+id/min15_switch"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/delfi"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/delfi_logo"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gauti pranešimus iš delfi.lt"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#000"
+                    android:textSize="16dp"
+                    android:id="@+id/getMessages_fromDelfi"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/delfi"/>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:theme="@style/MySwitch"
+                    android:layout_height="30dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/delfi_switch" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/alfa"
+                    android:background="@drawable/alfa_logo"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gauti pranešimus iš alfa.lt"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/getMessages_fromalfa"
+                    android:textColor="#000"
+                    android:textSize="16dp"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/alfa"/>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:theme="@style/MySwitch"
+                    android:layout_height="30dp"
+                    android:id="@+id/alfa_switch"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/lrytas"
+                    android:background="@drawable/lrytas_logo"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gauti pranešimus iš lrytas.lt"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="16dp"
+                    android:textColor="#000"
+                    android:id="@+id/getMessages_fromLRYTAS"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/lrytas"/>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:id="@+id/lrytas_switch"
+                    android:theme="@style/MySwitch"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

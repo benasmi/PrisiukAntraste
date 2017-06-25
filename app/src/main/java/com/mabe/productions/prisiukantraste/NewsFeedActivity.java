@@ -35,7 +35,7 @@ public class NewsFeedActivity extends AppCompatActivity {
     private ArrayList<NewsItem> info = new ArrayList<NewsItem>();
     private TextView toolbar_title;
     private ImageView back_icon;
-    //private ImageView settings;
+    private ImageView settings;
     private String type_txt;
     private NewsAdapter adapter;
     private boolean doubleBackToExitPressedOnce = false;
@@ -132,7 +132,14 @@ public class NewsFeedActivity extends AppCompatActivity {
 
         toolbar_title = (TextView) myToolbar.findViewById(R.id.toolbar_title);
         back_icon = (ImageView) myToolbar.findViewById(R.id.back_icon);
-        //settings = (ImageView) myToolbar.findViewById(R.id.settings);
+        settings = (ImageView) myToolbar.findViewById(R.id.settings);
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(NewsFeedActivity.this, SettingsActivity.class),0);
+            }
+        });
 
         back_icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +152,7 @@ public class NewsFeedActivity extends AppCompatActivity {
 
         back_icon.startAnimation(hamburgerAnim);
         toolbar_title.startAnimation(titleAnim);
-        //settings.startAnimation(settingsAnim);
+        settings.startAnimation(settingsAnim);
 
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/amitaBold.ttf");
