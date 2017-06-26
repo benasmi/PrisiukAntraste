@@ -85,7 +85,7 @@ public class ServerManager extends AsyncTask<String, String, String> {
             responseCode = fetch15min(Integer.parseInt(strings[0]));
         }
         if(operation_type.equals(SERVER_ADDRESS_INSERT_DEVICE_TOKEN)){
-            responseCode = insertToken(strings[0], strings[1]);
+            responseCode = insertToken(strings[0], strings[1], strings[2]);
         }
         if(operation_type.equals(SERVER_ADDRESS_FETCH_ALFA)){
             responseCode = fetchAlfa(Integer.parseInt(strings[0]));
@@ -389,7 +389,7 @@ public class ServerManager extends AsyncTask<String, String, String> {
 
     }
 
-    public static int insertToken(String old_device_token, String device_token){
+    public static int insertToken(String old_device_token, String device_token, String type){
         HttpClient httpClient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(SERVER_ADDRESS_INSERT_DEVICE_TOKEN);
 
@@ -400,6 +400,7 @@ public class ServerManager extends AsyncTask<String, String, String> {
 
             jsonObject.putOpt("old_device_id", old_device_token);
             jsonObject.putOpt("device_id", device_token);
+            jsonObject.putOpt("type", type);
 
 
         }catch (Exception e){

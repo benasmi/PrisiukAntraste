@@ -25,7 +25,8 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         SharedPreferences sharedPreferences = this.getSharedPreferences("user_data", MODE_PRIVATE);
 
         String old_token = sharedPreferences.getString("device_token",null);
-        new ServerManager(this, ServerManager.SERVER_ADDRESS_INSERT_DEVICE_TOKEN,false,null).execute(old_token, token);
+        String type = "android";
+        new ServerManager(this, ServerManager.SERVER_ADDRESS_INSERT_DEVICE_TOKEN,false,null).execute(old_token, token, type);
 
         sharedPreferences.edit().putString("device_token", token).commit();
 
