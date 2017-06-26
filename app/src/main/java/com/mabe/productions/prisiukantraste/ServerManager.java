@@ -73,7 +73,7 @@ public class ServerManager extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... strings) {
 
-        if(!CheckingUtils.connectionToServer(1500)){
+        if(!CheckingUtils.connectionToServer(1000)){
             responseCode = -1;
             return null;
         }

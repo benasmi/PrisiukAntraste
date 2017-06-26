@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.CheckResult;
 import android.support.annotation.Nullable;
@@ -234,7 +235,6 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
     public void remove(int position) {
         newsItems.remove(position);
         notifyItemRemoved(position);
-
     }
 
 
@@ -369,7 +369,7 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                             if(userData.getBoolean("open_with",true)){
                                 CheckingUtils.openURLinBrowser(context, item.getUrl());
                             }else{
-                                context.startActivity(new Intent(context, WebViewActivity.class).putExtra("url", item.getUrl()).putExtra("type", type).putExtra("title", item.getTitle()));
+                                ((Activity) context).startActivityForResult(new Intent(context, WebViewActivity.class).putExtra("url", item.getUrl()).putExtra("type", type).putExtra("title", item.getTitle()).putExtra("date", item.getDate()),1);
                             }
 
 
@@ -562,8 +562,6 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                                 @Override
                                 public void onFinish(final int responseCode) {
 
-
-
                                     if(!viewDialog.isDialogShowing()) {
 
                                         viewDialog.onCancelListener(new DialogInterface.OnCancelListener() {
@@ -577,9 +575,16 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                                                     try {
                                                         JSONArray array = new JSONArray(sharedPreferencesTitles.getString(newsItems.get(getAdapterPosition()).getUrl(), ""));
                                                         titleCount.setText(CheckingUtils.howManyTitles(array.length()));
+
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
                                                     }
+
+                                                }else{
+
+                                                    newsItems.get(getAdapterPosition()).setFirstTitle(viewDialog.adapter.titleItems.get(0));
+                                                    adapter.global_position = viewDialog.adapter.global_position;
+                                                    adapter.notifyDataSetChanged();
 
                                                 }
 
@@ -591,8 +596,10 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
 
                                         viewDialog.showDialog(newsItems.get(getAdapterPosition()).getUrl(), newsItems.get(getAdapterPosition()).getDate(), type);
 
+
                                         if(responseCode == -1){
                                             viewDialog.adapter.titleItems = adapter.titleItems;
+
                                         }
                                     }
                                 }

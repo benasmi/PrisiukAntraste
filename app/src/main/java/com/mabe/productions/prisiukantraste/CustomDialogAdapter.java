@@ -36,7 +36,7 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
     private RecyclerView recyclerView;
     private String url;
     private int showItems;
-    private int global_position = -1;
+    public int global_position = -1;
     private String votedTitle = "";
     public ArrayList<TitleItem> titleItems;
 
@@ -180,9 +180,6 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
                     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onClick(View view) {
-
-
-
 
                         //Kai packlinik jau pabalsuota
                         if(global_position==position){
