@@ -378,9 +378,6 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
 
 
 
-
-
-
                 break;
 
             case NewsItem.TYPE_AD:

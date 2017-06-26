@@ -15,6 +15,8 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class SettingsActivity extends AppCompatActivity {
 
 
@@ -25,6 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView get_msg_from_alfa;
     private TextView get_msg_from_delfi;
     private TextView get_msg_from_lrytas;
+    private TextView straipsnio_skaitymas;
+    private TextView open_with_txt;
 
     //Notification switchers
     private SwitchCompat min15_switch;
@@ -70,6 +74,10 @@ public class SettingsActivity extends AppCompatActivity {
         get_msg_from_delfi = (TextView)findViewById(R.id.getMessages_fromDelfi);
         get_msg_from_lrytas = (TextView) findViewById(R.id.getMessages_fromLRYTAS);
 
+
+        open_with_txt = (TextView) findViewById(R.id.open_with);
+        straipsnio_skaitymas = (TextView) findViewById(R.id.straipsnio_skaitymas);
+
         min15_switch = (SwitchCompat) findViewById(R.id.min15_switch);
         delfi_switch = (SwitchCompat) findViewById(R.id.delfi_switch);
         alfa_switch = (SwitchCompat) findViewById(R.id.alfa_switch);
@@ -81,11 +89,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         settings_txt.setTypeface(tfBold);
         pranesimai.setTypeface(tfBold);
+        straipsnio_skaitymas.setTypeface(tfBold);
         get_msg_from_15min.setTypeface(tfLight);
         get_msg_from_alfa.setTypeface(tfLight);
         get_msg_from_delfi.setTypeface(tfLight);
         get_msg_from_lrytas.setTypeface(tfLight);
-
+        open_with_txt.setTypeface(tfLight);
 
         back_arrow = (ImageView) myToolbar.findViewById(R.id.back_icon);
         back_arrow.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +114,7 @@ public class SettingsActivity extends AppCompatActivity {
         delfi_switch.setChecked(sharedPreferences.getBoolean("delfi_state", true));
         alfa_switch.setChecked(sharedPreferences.getBoolean("alfa_state", true));
         lrytas_switch.setChecked(sharedPreferences.getBoolean("lrytas_state", true));
-        open_with.setChecked(sharedPreferences.getBoolean("lrytas_state", false));
+        open_with.setChecked(sharedPreferences.getBoolean("open_with", false));
 
 
         min15_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
