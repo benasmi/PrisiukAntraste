@@ -1,0 +1,98 @@
+package com.mabe.productions.prisiukantraste;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+
+import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntroFragment;
+
+public class IntroActivity extends AppIntro {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT > 16) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+        setDepthAnimation();
+
+        addSlide(AppIntroFragment.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.ic_app_icon, Color.parseColor("#315016")));
+        addSlide(AppIntroFragment.newInstance("Sutaupykite laiko!","Nešvaistykite laiko clickbait'ams ir skaityke straipsnius, kurių antraštės atitinka jų turinį", R.drawable.ic_clock, Color.parseColor("#018191")));
+
+        addSlide(AppIntroFragment.newInstance("Prisidėkite ir Jūs","Pasiūlykite savo arba balsuokite už kitų antraštes", R.drawable.min15_logo, Color.BLACK));
+
+        addSlide(AppIntroFragment.newInstance("Tai tiek...","Pradėkime!!!", R.drawable.ic_done, Color.BLACK));
+
+
+    }
+
+
+    @Override
+    public void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+        // Do something when users tap on Skip button.
+    }
+
+    @Override
+    public void onDonePressed(Fragment currentFragment) {
+        Intent i = new Intent(IntroActivity.this, ChooseNewspapper.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.fade_in_no_delay, R.anim.fade_in_no_delay);
+
+        super.onDonePressed(currentFragment);
+        // Do something when users tap on Done button.
+    }
+
+    @Override
+    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
+        super.onSlideChanged(oldFragment, newFragment);
+        // Do something when the slide changes.
+    }
+
+
+
+    public static class SampleSlide extends Fragment {
+
+        private static final String ARG_LAYOUT_RES_ID = "layoutResId";
+        private int layoutResId;
+
+        public static SampleSlide newInstance(int layoutResId) {
+            SampleSlide sampleSlide = new SampleSlide();
+
+            Bundle args = new Bundle();
+            args.putInt(ARG_LAYOUT_RES_ID, layoutResId);
+            sampleSlide.setArguments(args);
+
+            return sampleSlide;
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            if (getArguments() != null && getArguments().containsKey(ARG_LAYOUT_RES_ID)) {
+                layoutResId = getArguments().getInt(ARG_LAYOUT_RES_ID);
+            }
+        }
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+            return inflater.inflate(layoutResId, container, false);
+        }
+    }
+
+}
+

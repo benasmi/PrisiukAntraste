@@ -86,7 +86,7 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent i = new Intent(StartingActivity.this, ChooseNewspapper.class);
+                Intent i = new Intent(StartingActivity.this, IntroActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.fade_in_no_delay, R.anim.fade_in_no_delay);
             }

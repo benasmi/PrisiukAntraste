@@ -41,7 +41,7 @@
             android:name=".ChooseNewspapper"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/LoginTheme"></activity>
+            android:theme="@style/LoginTheme" />
         <activity
             android:name=".StartingActivity"
             android:screenOrientation="portrait"
@@ -101,12 +101,15 @@
             android:name="com.evernote.android.job.JobRescheduleService"
             android:exported="false" />
 
-        <activity android:name=".SettingsActivity"
-            android:theme="@style/LoginTheme"
+        <activity
+            android:name=".SettingsActivity"
             android:screenOrientation="portrait"
-            >
+            android:theme="@style/LoginTheme"></activity>
+        <activity android:name=".IntroActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme"
 
-        </activity>
+            ></activity>
     </application>
 
 </manifest>
