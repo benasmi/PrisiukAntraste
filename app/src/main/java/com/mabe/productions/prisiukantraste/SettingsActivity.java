@@ -26,11 +26,14 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView get_msg_from_delfi;
     private TextView get_msg_from_lrytas;
 
-    //Switchers
+    //Notification switchers
     private SwitchCompat min15_switch;
     private SwitchCompat delfi_switch;
     private SwitchCompat alfa_switch;
     private SwitchCompat lrytas_switch;
+
+    //Open with switchers
+    private SwitchCompat open_with;
 
     private SharedPreferences sharedPreferences;
 
@@ -72,6 +75,8 @@ public class SettingsActivity extends AppCompatActivity {
         alfa_switch = (SwitchCompat) findViewById(R.id.alfa_switch);
         lrytas_switch = (SwitchCompat) findViewById(R.id.lrytas_switch);
 
+        open_with = (SwitchCompat) findViewById(R.id.open_with_switch);
+
 
 
         settings_txt.setTypeface(tfBold);
@@ -100,6 +105,7 @@ public class SettingsActivity extends AppCompatActivity {
         delfi_switch.setChecked(sharedPreferences.getBoolean("delfi_state", true));
         alfa_switch.setChecked(sharedPreferences.getBoolean("alfa_state", true));
         lrytas_switch.setChecked(sharedPreferences.getBoolean("lrytas_state", true));
+        open_with.setChecked(sharedPreferences.getBoolean("lrytas_state", false));
 
 
         min15_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -127,6 +133,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 sharedPreferences.edit().putBoolean("lrytas_state", b).commit();
+            }
+        });
+
+
+        open_with.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                sharedPreferences.edit().putBoolean("open_with", b).commit();
             }
         });
 

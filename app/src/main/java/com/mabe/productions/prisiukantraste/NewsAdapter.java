@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.support.annotation.CheckResult;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.AppCompatButton;
@@ -46,6 +47,7 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
     public ArrayList<NewsItem> newsItems;
     private int newspaper_logo_resource;
     private SharedPreferences sharedPreferencesTitles;
+    private SharedPreferences userData;
 
     public NewsAdapter(Context ctx, ArrayList<NewsItem> data, int type) {
         this.newsItems = data;
@@ -74,7 +76,7 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
         }
 
         sharedPreferences = ctx.getSharedPreferences("post_data", Context.MODE_PRIVATE);
-
+        userData = ctx.getSharedPreferences("user_data", Context.MODE_PRIVATE);
     }
 
     public void add(NewsItem info, int position) {
@@ -364,8 +366,12 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                     holder.rootView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            if(userData.getBoolean("open_with",true)){
+                                CheckingUtils.openURLinBrowser(context, item.getUrl());
+                            }else{
+                                context.startActivity(new Intent(context, WebViewActivity.class).putExtra("url", item.getUrl()).putExtra("type", type).putExtra("title", item.getTitle()));
+                            }
 
-                            context.startActivity(new Intent(context, WebViewActivity.class).putExtra("url", item.getUrl()).putExtra("type", type).putExtra("title", item.getTitle()));
 
                         }
                     });
