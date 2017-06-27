@@ -3,18 +3,25 @@ package com.mabe.productions.prisiukantraste;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntro2Fragment;
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
 
 public class IntroActivity extends AppIntro2 {
 
@@ -26,14 +33,19 @@ public class IntroActivity extends AppIntro2 {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        setDepthAnimation();
+
+        setFadeAnimation();
+
+
+
+
         showSkipButton(false);
-        addSlide(AppIntroFragment.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.ic_app_icon, Color.parseColor("#315016")));
-        addSlide(AppIntroFragment.newInstance("Sutaupykite laiko!","Nešvaistykite laiko clickbait'ams ir skaityke straipsnius, kurių antraštės atitinka jų turinį", R.drawable.ic_clock, Color.parseColor("#018191")));
+        addSlide(SampleSlide.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.ic_app_icon, Color.parseColor("#315016")));
+        addSlide(SampleSlide.newInstance("Sutaupykite laiko!","Nešvaistykite laiko clickbait'ams ir skaityke straipsnius, kurių antraštės atitinka jų turinį", R.drawable.ic_clock, Color.parseColor("#018191")));
 
-        addSlide(AppIntroFragment.newInstance("Prisidėkite ir Jūs","Pasiūlykite savo arba balsuokite už kitų antraštes", R.drawable.like_icon, Color.parseColor("#236a99")));
+        addSlide(SampleSlide.newInstance("Prisidėkite ir Jūs","Pasiūlykite savo arba balsuokite už kitų antraštes", R.drawable.like_icon, Color.parseColor("#236a99")));
 
-        addSlide(AppIntroFragment.newInstance("Tai tiek...","Pradėkime!!!", R.drawable.relieved, Color.parseColor("#dab10d")));
+        addSlide(SampleSlide.newInstance("Tai tiek...","Pradėkime!!!", R.drawable.relieved, Color.parseColor("#dab10d")));
 
 
     }
@@ -66,17 +78,28 @@ public class IntroActivity extends AppIntro2 {
 
 
 
-    public static class SampleSlide extends Fragment {
+    public static class SampleSlide extends Fragment implements ISlideBackgroundColorHolder{
 
         private static final String ARG_LAYOUT_RES_ID = "layoutResId";
         private int layoutResId;
+        private int color;
+        String title;
+        String description;
+        int image;
 
-        public static SampleSlide newInstance(int layoutResId) {
+        private View rootView;
+
+
+        public static SampleSlide newInstance(String title, String description, int image, int color) {
             SampleSlide sampleSlide = new SampleSlide();
 
             Bundle args = new Bundle();
-            args.putInt(ARG_LAYOUT_RES_ID, layoutResId);
+            args.putInt(ARG_LAYOUT_RES_ID, R.layout.app_intro_layout_1);
             sampleSlide.setArguments(args);
+            sampleSlide.description = description;
+            sampleSlide.title = title;
+            sampleSlide.image = image;
+            sampleSlide.color = color;
 
             return sampleSlide;
         }
@@ -88,15 +111,51 @@ public class IntroActivity extends AppIntro2 {
             if (getArguments() != null && getArguments().containsKey(ARG_LAYOUT_RES_ID)) {
                 layoutResId = getArguments().getInt(ARG_LAYOUT_RES_ID);
             }
+
         }
 
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
-            return inflater.inflate(layoutResId, container, false);
+            rootView = inflater.inflate(layoutResId, container, false);
+
+            TextView title = (TextView) rootView.findViewById(R.id.intro_title);
+            TextView description = (TextView) rootView.findViewById(R.id.intro_description);
+            ImageView image = (ImageView) rootView.findViewById(R.id.intro_image);
+
+            RelativeLayout layout = (RelativeLayout) rootView;
+            layout.setBackgroundColor(color);
+
+
+            title.setText(this.title);
+            description.setText(this.description);
+            image.setImageResource(this.image);
+
+
+            return rootView;
+        }
+
+        @Override
+        public int getDefaultBackgroundColor() {
+            return color;
+        }
+
+        @Override
+        public void setBackgroundColor(@ColorInt int backgroundColor) {
+            Log.i("TEST", "background color: " + backgroundColor);
+
+            if(rootView != null){
+                Log.i("TEST", "patenka");
+                RelativeLayout layout = (RelativeLayout) rootView;
+                layout.setBackgroundColor(backgroundColor);
+            }
+
+
         }
     }
+
+
 
 }
 
