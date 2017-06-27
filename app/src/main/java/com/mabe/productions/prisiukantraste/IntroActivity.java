@@ -13,9 +13,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public class IntroActivity extends AppIntro {
+public class IntroActivity extends AppIntro2 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,9 @@ public class IntroActivity extends AppIntro {
         addSlide(AppIntroFragment.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.ic_app_icon, Color.parseColor("#315016")));
         addSlide(AppIntroFragment.newInstance("Sutaupykite laiko!","Nešvaistykite laiko clickbait'ams ir skaityke straipsnius, kurių antraštės atitinka jų turinį", R.drawable.ic_clock, Color.parseColor("#018191")));
 
-        addSlide(AppIntroFragment.newInstance("Prisidėkite ir Jūs","Pasiūlykite savo arba balsuokite už kitų antraštes", R.drawable.min15_logo, Color.BLACK));
+        addSlide(AppIntroFragment.newInstance("Prisidėkite ir Jūs","Pasiūlykite savo arba balsuokite už kitų antraštes", R.drawable.like_icon, Color.parseColor("#236a99")));
 
-        addSlide(AppIntroFragment.newInstance("Tai tiek...","Pradėkime!!!", R.drawable.ic_done, Color.BLACK));
+        addSlide(AppIntroFragment.newInstance("Tai tiek...","Pradėkime!!!", R.drawable.relieved, Color.parseColor("#dab10d")));
 
 
     }
@@ -40,6 +41,9 @@ public class IntroActivity extends AppIntro {
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
+        Intent i = new Intent(IntroActivity.this, ChooseNewspapper.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.fade_in_no_delay, R.anim.fade_in_no_delay);
         super.onSkipPressed(currentFragment);
         // Do something when users tap on Skip button.
     }
