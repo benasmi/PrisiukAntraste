@@ -33,7 +33,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="40dp"
+                android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@drawable/app_icon_black_single_patch"
                 android:layout_gravity="right"
@@ -54,14 +54,17 @@
             android:id="@+id/webview_txt"
             android:layout_gravity="left"
             android:layout_marginLeft="40dp"
-            android:textSize="20dp"
-            android:text="Nustatymai"/>
+            android:textSize="15dp"
+            android:maxWidth="250dp"
+            android:maxLines="1"
+            android:text=""/>
 
     </android.support.v7.widget.Toolbar>
 
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/webview_toolbar"
         android:id="@+id/webview">
 
     </WebView>

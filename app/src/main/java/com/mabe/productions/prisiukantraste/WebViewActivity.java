@@ -59,7 +59,8 @@ public class WebViewActivity extends AppCompatActivity {
                 "fonts/openSans.ttf");
 
         title_txt.setTypeface(tfBold);
-        title_txt.setTypeface(tfBold);
+
+        title_txt.setText(trimToSize(title, 24));
 
         add_title.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +133,14 @@ public class WebViewActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private String trimToSize(String string, int maxSize){
+        if(string.length() < maxSize){
+            return string;
+        }
+
+        return string.substring(0, maxSize) + "...";
     }
 
 
