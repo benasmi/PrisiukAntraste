@@ -27,7 +27,7 @@ public class IntroActivity extends AppIntro2 {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         setDepthAnimation();
-
+        showSkipButton(false);
         addSlide(AppIntroFragment.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.ic_app_icon, Color.parseColor("#315016")));
         addSlide(AppIntroFragment.newInstance("Sutaupykite laiko!","Nešvaistykite laiko clickbait'ams ir skaityke straipsnius, kurių antraštės atitinka jų turinį", R.drawable.ic_clock, Color.parseColor("#018191")));
 
