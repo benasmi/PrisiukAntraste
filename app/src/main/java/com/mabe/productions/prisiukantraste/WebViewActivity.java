@@ -32,7 +32,6 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-
         webView = (WebView) findViewById(R.id.webview);
 
         Bundle extras = getIntent().getExtras();

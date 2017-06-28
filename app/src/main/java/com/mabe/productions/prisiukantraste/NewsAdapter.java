@@ -41,6 +41,7 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
 
     private final Context context;
     private ViewDialog viewDialog;
+    public static boolean canOpen = true;
     private int type;
     int postsAnimated = 0;
     int headersAnimated = 0;
@@ -366,6 +367,9 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                     holder.rootView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
+                            if(canOpen){
+                                canOpen=false;
                             if(userData.getBoolean("open_with",false)){
                                 CheckingUtils.openURLinBrowser(context, item.getUrl());
                             }else{
@@ -373,6 +377,7 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                             }
 
 
+                        }
                         }
                     });
 

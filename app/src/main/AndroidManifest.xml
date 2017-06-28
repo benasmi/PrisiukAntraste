@@ -34,7 +34,6 @@
             android:theme="@style/LoginTheme" />
         <activity
             android:name=".WebViewActivity"
-            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
