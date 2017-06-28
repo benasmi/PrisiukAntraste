@@ -366,7 +366,7 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                     holder.rootView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if(userData.getBoolean("open_with",true)){
+                            if(userData.getBoolean("open_with",false)){
                                 CheckingUtils.openURLinBrowser(context, item.getUrl());
                             }else{
                                 ((Activity) context).startActivityForResult(new Intent(context, WebViewActivity.class).putExtra("url", item.getUrl()).putExtra("type", type).putExtra("title", item.getTitle()).putExtra("date", item.getDate()),1);

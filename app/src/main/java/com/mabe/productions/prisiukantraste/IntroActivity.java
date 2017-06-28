@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,9 +36,6 @@ public class IntroActivity extends AppIntro2 {
         }
 
         setFadeAnimation();
-
-
-
 
         showSkipButton(false);
         addSlide(SampleSlide.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.ic_app_icon, Color.parseColor("#315016")));
@@ -112,6 +110,8 @@ public class IntroActivity extends AppIntro2 {
                 layoutResId = getArguments().getInt(ARG_LAYOUT_RES_ID);
             }
 
+
+
         }
 
         @Nullable
@@ -154,6 +154,9 @@ public class IntroActivity extends AppIntro2 {
 
         }
     }
+
+
+
 
 
 

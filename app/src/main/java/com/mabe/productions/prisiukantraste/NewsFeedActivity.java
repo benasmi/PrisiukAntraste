@@ -1,6 +1,7 @@
 package com.mabe.productions.prisiukantraste;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
@@ -42,6 +43,7 @@ public class NewsFeedActivity extends AppCompatActivity {
     private String type_txt;
     private NewsAdapter adapter;
     private boolean doubleBackToExitPressedOnce = false;
+    private SharedPreferences userData;
     private PullRefreshLayout layout;
 
     @Override
@@ -77,7 +79,7 @@ public class NewsFeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_feed);
-
+        userData = getSharedPreferences("user_data", MODE_PRIVATE);
         JobManager.create(this).addJobCreator(new JobCreator() {
             @Override
             public Job create(String tag) {
@@ -155,8 +157,10 @@ public class NewsFeedActivity extends AppCompatActivity {
         back_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                userData.edit().putInt("browsing_history",ChooseNewspapper.TYPE_NO_HISTORY).commit();
                 startActivity(new Intent(NewsFeedActivity.this, ChooseNewspapper.class));
                 NewsFeedActivity.this.finish();
+
             }
         });
 

@@ -1,6 +1,7 @@
 package com.mabe.productions.prisiukantraste;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,9 @@ public class ChooseNewspapper extends AppCompatActivity {
     public static final int TYPE_ALFA = 1;
     public static final int TYPE_LRYTAS = 2;
     public static final int TYPE_DELFI = 3;
+    public static final int TYPE_NO_HISTORY= 4;
+
+    private SharedPreferences userData;
 
 
 
@@ -33,6 +37,9 @@ public class ChooseNewspapper extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_newspapper);
+
+        userData = getSharedPreferences("user_data", MODE_PRIVATE);
+
 
         min15 = (ImageButton) findViewById(R.id.min15_btn);
         alfa = (ImageButton) findViewById(R.id.alfa_btn);
@@ -61,6 +68,7 @@ public class ChooseNewspapper extends AppCompatActivity {
         min15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                userData.edit().putInt("browsing_history",TYPE_15MIN ).commit();
                 Intent i = new Intent(ChooseNewspapper.this, NewsFeedActivity.class);
                 i.putExtra("type", TYPE_15MIN);
                 startActivity(i);
@@ -70,6 +78,7 @@ public class ChooseNewspapper extends AppCompatActivity {
         alfa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                userData.edit().putInt("browsing_history",TYPE_ALFA ).commit();
                 Intent i = new Intent(ChooseNewspapper.this, NewsFeedActivity.class);
                 i.putExtra("type", TYPE_ALFA);
                 startActivity(i);
@@ -79,6 +88,7 @@ public class ChooseNewspapper extends AppCompatActivity {
         lrytas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                userData.edit().putInt("browsing_history",TYPE_LRYTAS ).commit();
                 Intent i = new Intent(ChooseNewspapper.this, NewsFeedActivity.class);
                 i.putExtra("type", TYPE_LRYTAS);
                 startActivity(i);
@@ -88,6 +98,7 @@ public class ChooseNewspapper extends AppCompatActivity {
         delfi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                userData.edit().putInt("browsing_history",TYPE_DELFI ).commit();
                 Intent i = new Intent(ChooseNewspapper.this, NewsFeedActivity.class);
                 i.putExtra("type", TYPE_DELFI);
                 startActivity(i);
