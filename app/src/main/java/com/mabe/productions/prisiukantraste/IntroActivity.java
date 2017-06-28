@@ -2,6 +2,7 @@ package com.mabe.productions.prisiukantraste;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
@@ -35,15 +36,14 @@ public class IntroActivity extends AppIntro2 {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
-        setFadeAnimation();
 
         showSkipButton(false);
-        addSlide(SampleSlide.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.ic_app_icon, Color.parseColor("#315016")));
+        addSlide(SampleSlide.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.app_icon_white, Color.parseColor("#315016")));
         addSlide(SampleSlide.newInstance("Sutaupykite laiko!","Nešvaistykite laiko clickbait'ams ir skaityke straipsnius, kurių antraštės atitinka jų turinį", R.drawable.ic_clock, Color.parseColor("#018191")));
 
-        addSlide(SampleSlide.newInstance("Prisidėkite ir Jūs","Pasiūlykite savo arba balsuokite už kitų antraštes", R.drawable.like_icon, Color.parseColor("#236a99")));
+        addSlide(SampleSlide.newInstance("Prisidėkite ir Jūs!","Pasiūlykite savo arba balsuokite už kitų antraštes", R.drawable.ic_pencil, Color.parseColor("#236a99")));
 
-        addSlide(SampleSlide.newInstance("Tai tiek...","Pradėkime!!!", R.drawable.relieved, Color.parseColor("#dab10d")));
+        addSlide(SampleSlide.newInstance("Tai viskas","Naujienos jūsų jau laukia!", R.drawable.ic_heart, Color.parseColor("#dab10d")));
 
 
     }
@@ -76,7 +76,7 @@ public class IntroActivity extends AppIntro2 {
 
 
 
-    public static class SampleSlide extends Fragment implements ISlideBackgroundColorHolder{
+    public static class SampleSlide extends Fragment{
 
         private static final String ARG_LAYOUT_RES_ID = "layoutResId";
         private int layoutResId;
@@ -124,9 +124,15 @@ public class IntroActivity extends AppIntro2 {
             TextView description = (TextView) rootView.findViewById(R.id.intro_description);
             ImageView image = (ImageView) rootView.findViewById(R.id.intro_image);
 
-            RelativeLayout layout = (RelativeLayout) rootView;
-            layout.setBackgroundColor(color);
 
+            Typeface tfLight = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/openSans.ttf");
+
+            Typeface tfBold = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/openSansBold.ttf");
+
+            title.setTypeface(tfBold);
+            description.setTypeface(tfLight);
 
             title.setText(this.title);
             description.setText(this.description);
@@ -136,23 +142,7 @@ public class IntroActivity extends AppIntro2 {
             return rootView;
         }
 
-        @Override
-        public int getDefaultBackgroundColor() {
-            return color;
-        }
 
-        @Override
-        public void setBackgroundColor(@ColorInt int backgroundColor) {
-            Log.i("TEST", "background color: " + backgroundColor);
-
-            if(rootView != null){
-                Log.i("TEST", "patenka");
-                RelativeLayout layout = (RelativeLayout) rootView;
-                layout.setBackgroundColor(backgroundColor);
-            }
-
-
-        }
     }
 
 

@@ -2,40 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:background="@drawable/starting_gradient"
               android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:id="@+id/intro_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:scaleType="center"
+        android:src="@drawable/app_icon_white"/>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/intro_title"
-        android:layout_marginTop="50dp"
+        android:layout_below="@+id/intro_image"
         android:text="Sveiki prisijungę!"
         android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="27dp"
+        android:layout_marginTop="40dp"
+        android:textSize="30dp"
         android:textColor="#fff"
         />
-
-    <ImageView
-        android:layout_width="200dp"
-        android:id="@+id/intro_image"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_app_icon"/>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/intro_description"
-        android:layout_marginBottom="100dp"
         android:text="Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas"
         android:gravity="center"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:textSize="18dp"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:textSize="19dp"
+        android:layout_marginTop="30dp"
         android:textColor="#fff"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/intro_title"
         />
 
 </RelativeLayout>
