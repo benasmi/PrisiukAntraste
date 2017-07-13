@@ -337,7 +337,6 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                             .crossFade()
                             .error(R.drawable.ic_no_image)
                             .animate(R.anim.fade)
-                            .override(400,item.getImageHeight())
                             .into(holder.preview_img);
 
 

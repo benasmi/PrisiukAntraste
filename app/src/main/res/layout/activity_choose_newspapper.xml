@@ -27,6 +27,12 @@
         <!--android:text="...Ir pradėkite naršyti..."-->
         <!--android:textSize="35dp"/>-->
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,13 +56,12 @@
         android:textColor="#000"
         android:text="antraštę"/>
 
-
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/antraste_txt"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
         android:layout_gravity="center"
         android:columnCount="2"
         android:id="@+id/grid_layout"
@@ -127,7 +132,7 @@
     </GridLayout>
 
 
-
+</RelativeLayout>
 
 
 </RelativeLayout>
