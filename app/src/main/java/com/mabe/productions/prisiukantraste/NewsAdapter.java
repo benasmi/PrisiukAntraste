@@ -206,6 +206,29 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
                 int second_title_points = newsData.getInt("title_second_points");
                 int second_title_isOrigin = newsData.getInt("title_second_isOrigin");
 
+                SharedPreferences voted_title_prefs = context.getSharedPreferences("titles_data", Context.MODE_PRIVATE);
+
+                if(voted_title_prefs.getString(url, "").equals("")){
+                    JSONArray titlesDataArray = new JSONArray();
+
+                    JSONObject obj1 = new JSONObject();
+                    obj1.put("points",  first_title_points);
+                    obj1.put("title", first_title);
+                    obj1.put("isOriginal",  first_title_isOrigin);
+                    titlesDataArray.put(obj1);
+
+                    if(!second_title.equals("")){
+                        JSONObject obj2 = new JSONObject();
+                        obj2.put("points",  second_title_points);
+                        obj2.put("title", second_title);
+                        obj2.put("isOriginal",  second_title_isOrigin);
+                        titlesDataArray.put(obj2);
+                    }
+
+                    voted_title_prefs.edit().putString(url, titlesDataArray.toString()).commit();
+                }
+
+
                 int image_height = newsData.getInt("height");
 
                 TitleItem firstTitle = new TitleItem(first_title, first_title_points, first_title_isOrigin);
@@ -344,13 +367,13 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
 
                     if(!holder.adapter.reloadDataFromSharedPreferences()){
 
-                        holder.adapter.add(item.getFirstTitle(), holder.adapter.titleItems.size());
-
-
-                        if(!item.getSecondTitle().getTitle().equals("")){
-                            holder.adapter.add(item.getSecondTitle(), holder.adapter.titleItems.size());
-
-                        }
+//                        holder.adapter.add(item.getFirstTitle(), holder.adapter.titleItems.size());
+//
+//
+//                        if(!item.getSecondTitle().getTitle().equals("")){
+//                            holder.adapter.add(item.getSecondTitle(), holder.adapter.titleItems.size());
+//
+//                        }
 
 
 

@@ -23,6 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.evernote.android.job.JobRequest;
+import com.evernote.android.job.util.support.PersistableBundleCompat;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +43,6 @@ public class ViewDialog {
     private SharedPreferences sharedPreferences;
     private Context context;
     private String url;
-    private TextView antrastes;
     private EditText new_title_txt;
     private ImageView add_new_title;
     private int titleCount=0;
@@ -167,31 +169,58 @@ public class ViewDialog {
 
 
 
-                            new ServerManager(context, ServerManager.SERVER_ADDRESS_INSERT_TITLE, false, new OnFinishListener() {
-                                @Override
-                                public void onFinish(int responseCode) {
-                                    switch (responseCode){
-                                        case 0:
-                                            addTitleToSharedPrefs(url,titleTxt);
-                                            new_title_txt.setText("");
-                                            new_title_txt.setSelected(false);
-                                            disableTitlidity();
-                                            adapter.add(new TitleItem(titleTxt,0, 0),adapter.titleItems.size());
-                                            addNewTitleItemToSharedPrefs(0, titleTxt);
-                                            break;
+//                            new ServerManager(context, ServerManager.SERVER_ADDRESS_INSERT_TITLE, false, new OnFinishListener() {
+//                                @Override
+//                                public void onFinish(int responseCode) {
+//                                    switch (responseCode){
+//                                        case 0:
+//                                            addTitleToSharedPrefs(url,titleTxt);
+//                                            new_title_txt.setText("");
+//                                            new_title_txt.setSelected(false);
+//                                            disableTitlidity();
+//                                            adapter.add(new TitleItem(titleTxt,0, 0),adapter.titleItems.size());
+//                                            addNewTitleItemToSharedPrefs(0, titleTxt);
+//                                            break;
+//
+//                                        case 1:
+//
+//                                            Toast.makeText(context, "Tokia antraštė jau egzistuoja", Toast.LENGTH_LONG).show();
+//
+//                                            break;
+//                                        case -1:
+//                                            Toast.makeText(context, "Jūs neprisijungęs prie interneto!", Toast.LENGTH_LONG).show();
+//                                            break;
+//                                    }
+//
+//                                }
+//                            }).execute(url,titleTxt, type);
 
-                                        case 1:
 
-                                            Toast.makeText(context, "Tokia antraštė jau egzistuoja", Toast.LENGTH_LONG).show();
+                        scheduleAddTitleJob(url, titleTxt, type); //TODO: check if title already exists
+                        addTitleToSharedPrefs(url,titleTxt);
+                        new_title_txt.setText("");
+                        new_title_txt.setSelected(false);
+                        disableTitlidity();
+                        adapter.add(new TitleItem(titleTxt,1, 0),adapter.titleItems.size());
+                        addNewTitleItemToSharedPrefs(0, titleTxt);
+                        adapter.saveAddedTitle();
 
-                                            break;
-                                        case -1:
-                                            Toast.makeText(context, "Jūs neprisijungęs prie interneto!", Toast.LENGTH_LONG).show();
-                                            break;
-                                    }
 
-                                }
-                            }).execute(url,titleTxt, type);
+
+                        //Downwoting previous title
+                        String votedTitle = adapter.checkVotedTitles(url);
+                        if(!votedTitle.equals("")){
+                            adapter.scheduleTitleJob("VOTE_DOWN_TITLE", url, votedTitle);
+                            adapter.addPointToShared(-1, votedTitle);
+                        }
+
+                        //upvoting new title
+                        adapter.addPointToShared(+1, titleTxt);
+                        adapter.addVotedTitleToSharedPrefs(url, titleTxt);
+
+
+                        adapter.reloadDataFromSharedPreferences();
+
 
                     }
                 }
@@ -231,6 +260,26 @@ public class ViewDialog {
             return false;
         }
         return dialog.isShowing();
+    }
+
+    private void scheduleAddTitleJob(String url, String title, String type){
+
+        PersistableBundleCompat extras = new PersistableBundleCompat();
+        extras.putString("url", url);
+        extras.putString("title", title);
+        extras.putString("type", type);
+        extras.putString("job_id", "ADD_TITLE");
+
+
+        new JobRequest.Builder("TITLE_JOB")
+                .setExecutionWindow(1L,  Long.MAX_VALUE / 3 * 2)
+                .setRequiredNetworkType(JobRequest.NetworkType.CONNECTED)
+                .setExtras(extras)
+                .build()
+                .schedule();
+
+
+
     }
 
 

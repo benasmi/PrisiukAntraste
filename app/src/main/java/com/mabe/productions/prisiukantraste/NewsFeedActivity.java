@@ -85,7 +85,7 @@ public class NewsFeedActivity extends AppCompatActivity {
             @Override
             public Job create(String tag) {
 
-
+                Log.i("TEST", tag);
                 switch(tag){
                     case "TITLE_JOB":
                         return new Job() {
@@ -102,9 +102,9 @@ public class NewsFeedActivity extends AppCompatActivity {
 
                                 switch (job_id){
                                     case "ADD_TITLE":
-
                                         String type = extras.getString("type", "NO_TYPE");
                                         ServerManager.insertTitle(url, title, type);
+                                        ServerManager.voting_up(url, title);
                                         break;
 
                                     case "VOTE_UP_TITLE":

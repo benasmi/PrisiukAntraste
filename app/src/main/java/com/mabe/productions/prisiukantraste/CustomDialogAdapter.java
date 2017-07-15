@@ -48,7 +48,6 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
         this.showItems = showItems;
         this.recyclerView = recyclerView;
         sharedPreferences = ctx.getSharedPreferences("user_data", Context.MODE_PRIVATE);
-
         votedTitle = checkVotedTitles(url);
     }
 
@@ -181,6 +180,10 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
                     @Override
                     public void onClick(View view) {
 
+                        if(isTitleAdded()){
+                            return;
+                        }
+
                         //Kai packlinik jau pabalsuota
                         if(global_position==position){
                             titleItems.get(global_position).setPoints(titleItems.get(global_position).getPoints()-1);
@@ -191,7 +194,7 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
 
                             global_position = -1;
                         }else{
-                            //Kai nauja ir paclikints joks kits
+
                             if(global_position != -1){
                                 scheduleTitleJob("VOTE_DOWN_TITLE", url, titleItems.get(global_position).getTitle());
                                 titleItems.get(global_position).setPoints(titleItems.get(global_position).getPoints()-1);
@@ -199,7 +202,6 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
 
                             }
 
-                            //Kai yra kits packlicints
                             global_position = position;
                             titleItems.get(global_position).setPoints(titleItems.get(global_position).getPoints()+1);
                             addPointToShared(+1, titleItems.get(global_position).getTitle());
@@ -216,11 +218,6 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
 
                         CheckingUtils.sortArray(titleItems);
                         notifyItemRangeChanged(0, getItemCount());
-
-
-
-
-
                     }
                 });
 
@@ -229,11 +226,7 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
 
     }
 
-    public static int timesUp = 1;
-    public static int timesDown = 1;
-
-    private void scheduleTitleJob(String jobId, String url, String title){
-        ComponentName serviceName = new ComponentName(context, TitleJob.class);
+    public void scheduleTitleJob(String jobId, String url, String title){
 
         PersistableBundleCompat extras = new PersistableBundleCompat();
         extras.putString("url", url);
@@ -253,7 +246,7 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
     }
 
     //Returing title that has been voted
-    private String checkVotedTitles(String url){
+    public String checkVotedTitles(String url){
 
         String rawData = sharedPreferences.getString("voted_titles", new JSONArray().toString());
 
@@ -276,11 +269,50 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
         return "";
     }
 
+    //Adds this post to posts_with_added_titles shared preference to prevent other post voting
+    public void saveAddedTitle(){
+        String rawData = sharedPreferences.getString("posts_with_added_titles", new JSONArray().toString());
+
+        try {
+            JSONArray titlesDataArray = new JSONArray(rawData);
+            JSONObject json = new JSONObject();
+            json.put("url", url);
+            titlesDataArray.put(json);
+            sharedPreferences.edit().putString("posts_with_added_titles", titlesDataArray.toString()).commit();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    //Checks if a title has been added to this post
+    public boolean isTitleAdded(){
+        String rawData = sharedPreferences.getString("posts_with_added_titles", new JSONArray().toString());
+
+        try{
+            JSONArray titlesDataArray = new JSONArray(rawData);
+            for (int i = 0; i<titlesDataArray.length(); i++){
+                JSONObject titleData = titlesDataArray.getJSONObject(i);
+                String titleUrl = titleData.getString("url");
+
+                if(titleUrl.equals(url)){
+
+                    return true;
+
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
 
     //Add voted title to shared prefs of voted titles
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private  void addVotedTitleToSharedPrefs(String url, @Nullable String title){
+    public void addVotedTitleToSharedPrefs(String url, @Nullable String title){
 
         String rawData = sharedPreferences.getString("voted_titles",  new JSONArray().toString());
 
@@ -331,7 +363,7 @@ public class CustomDialogAdapter extends  RecyclerView.Adapter<CustomDialogAdapt
     }
 
 
-    private void addPointToShared(int plusOrMinus, String given_title){
+    public void addPointToShared(int plusOrMinus, String given_title){
 
         JSONArray jsonArray = new JSONArray();
         SharedPreferences sharedPreferences = context.getSharedPreferences("titles_data", Context.MODE_PRIVATE);
