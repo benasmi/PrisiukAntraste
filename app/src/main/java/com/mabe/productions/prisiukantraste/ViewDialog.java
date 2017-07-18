@@ -44,12 +44,14 @@ public class ViewDialog {
     private Context context;
     private String url;
     private EditText new_title_txt;
+    int customDialogIcon = 0;
     private ImageView add_new_title;
     private int titleCount=0;
     private String type;
     private LinearLayout layout;
     private Dialog dialog;
     private TextView date_textview;
+    private ImageView custom_dialog_icon;
     private String titleTxt;
 
 
@@ -75,24 +77,27 @@ public class ViewDialog {
         info.clear();
 
         date_textview.setText(CheckingUtils.getTimeAgo(CheckingUtils.getDateInMillis(date)));
-
         sharedPreferences = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
 
         switch (code){
 
             case ChooseNewspapper.TYPE_15MIN:
+                customDialogIcon = R.drawable.min15_logo;
                 type = "15min";
                 break;
 
             case ChooseNewspapper.TYPE_ALFA:
+                customDialogIcon = R.drawable.alfa_logo;
                 type = "alfa";
                 break;
 
             case ChooseNewspapper.TYPE_LRYTAS:
+                customDialogIcon = R.drawable.lrytas_logo;
                 type = "lrytas";
                 break;
 
             case ChooseNewspapper.TYPE_DELFI:
+                customDialogIcon = R.drawable.delfi_logo;
                 type = "delfi";
                 break;
 
@@ -108,8 +113,8 @@ public class ViewDialog {
 
 
         add_new_title = (ImageView) dialog.findViewById(R.id.add_custom_title_btn);
-
-
+        custom_dialog_icon = (ImageView) dialog.findViewById(R.id.custom_dialog_logo);
+        custom_dialog_icon.setImageResource(customDialogIcon);
         addTitles();
 
         CheckingUtils.sortArray(info);
