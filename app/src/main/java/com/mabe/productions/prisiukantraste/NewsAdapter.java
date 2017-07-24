@@ -480,10 +480,12 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
             int newPos = 0;
 
             if(position > 0 ){
-                newPos = position+1;
+                newPos = position/2+1;
             }else{
-                newPos = position;
+                newPos = position/2;
             }
+
+            Log.i("TEST", position + " " + newPos);
 
             switch (type){
 
