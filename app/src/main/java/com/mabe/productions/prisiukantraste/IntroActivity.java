@@ -38,7 +38,7 @@ public class IntroActivity extends AppIntro2 {
 
 
         showSkipButton(false);
-        addSlide(SampleSlide.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taip jūsų geriausiu draugu skaitant naujienas", R.drawable.app_icon_white, Color.parseColor("#315016")));
+        addSlide(SampleSlide.newInstance("Sveiki prisijungę!", "Prisiūk antraštę - tai aplikacija, kuri taps jūsų geriausiu draugu skaitant naujienas", R.drawable.app_icon_white, Color.parseColor("#315016")));
         addSlide(SampleSlide.newInstance("Sutaupykite laiko!","Nešvaistykite laiko clickbait'ams ir skaityke straipsnius, kurių antraštės atitinka jų turinį", R.drawable.ic_clock, Color.parseColor("#018191")));
 
         addSlide(SampleSlide.newInstance("Prisidėkite ir Jūs!","Pasiūlykite savo arba balsuokite už kitų antraštes", R.drawable.ic_pencil, Color.parseColor("#236a99")));
