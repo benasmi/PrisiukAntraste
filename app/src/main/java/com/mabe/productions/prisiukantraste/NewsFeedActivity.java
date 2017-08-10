@@ -50,6 +50,12 @@ public class NewsFeedActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         if (doubleBackToExitPressedOnce) {
+
+            if(!getIntent().getExtras().getString("sender", "none").equals("none")){
+                startActivity(new Intent(NewsFeedActivity.this, ChooseNewspapper.class));
+                return;
+            }
+
             super.onBackPressed();
             return;
         }
@@ -58,7 +64,6 @@ public class NewsFeedActivity extends AppCompatActivity {
         Toast.makeText(this, "Paspauskite dar kartą, kad grįžtumėte atgal.", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 doubleBackToExitPressedOnce=false;

@@ -79,11 +79,13 @@ public class StartingActivity extends AwesomeSplash {
                         case ChooseNewspapper.TYPE_15MIN:
                             Intent mins15 = new Intent(StartingActivity.this, NewsFeedActivity.class);
                             mins15.putExtra("type", ChooseNewspapper.TYPE_15MIN);
+                            mins15.putExtra("sender", "StartingActivity");
                             startActivity(mins15);
                             break;
                         case ChooseNewspapper.TYPE_ALFA:
                             Intent alfa = new Intent(StartingActivity.this, NewsFeedActivity.class);
                             alfa.putExtra("type", ChooseNewspapper.TYPE_ALFA);
+                            alfa.putExtra("sender", "StartingActivity");
                             startActivity(alfa);
                             break;
 
@@ -91,12 +93,13 @@ public class StartingActivity extends AwesomeSplash {
 
                             Intent lrytas = new Intent(StartingActivity.this, NewsFeedActivity.class);
                             lrytas.putExtra("type", ChooseNewspapper.TYPE_LRYTAS);
+                            lrytas.putExtra("sender", "StartingActivity");
                             startActivity(lrytas);
                             break;
                         case ChooseNewspapper.TYPE_DELFI:
-
                             Intent delfi = new Intent(StartingActivity.this, NewsFeedActivity.class);
                             delfi.putExtra("type", ChooseNewspapper.TYPE_DELFI);
+                            delfi.putExtra("sender", "StartingActivity");
                             startActivity(delfi);
                             break;
 
