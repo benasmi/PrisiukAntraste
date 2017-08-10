@@ -320,7 +320,7 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
 
                 String description = item.getDescription();
                 String image_url = item.getImageUrl();
-                String title = item.getTitle();
+                String most_voted_title = item.getFirstTitle().getPoints() > item.getSecondTitle().getPoints() ? item.getFirstTitle().getTitle() : item.getSecondTitle().getTitle();
                 String url = item.getUrl();
                 String titleCount = item.getTitleCount();
 
@@ -365,24 +365,12 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
 
 
 
-                    if(!holder.adapter.reloadDataFromSharedPreferences()){
-
-//                        holder.adapter.add(item.getFirstTitle(), holder.adapter.titleItems.size());
-//
-//
-//                        if(!item.getSecondTitle().getTitle().equals("")){
-//                            holder.adapter.add(item.getSecondTitle(), holder.adapter.titleItems.size());
-//
-//                        }
+                    holder.adapter.reloadDataFromSharedPreferences();
 
 
 
 
-                    }
-
-
-
-                    holder.title.setText(title.trim());
+                    holder.title.setText(most_voted_title.trim());
                     holder.titleCount.setText(titleCount);
 
                     //TODO: load img
