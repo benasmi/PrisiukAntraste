@@ -37,29 +37,31 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         int type = (Integer) data.get("type");
         String title = (String) data.get("title");
         String message = (String) data.get("message");
+        String url = (String) data.get("url");
+        String date = (String) data.get("date");
 
         switch (type){
             case ChooseNewspapper.TYPE_15MIN:
                 if(sharedPreferences.getBoolean("15min_state", true)){
-                    sendNotification(title, message, R.drawable.min15_logo);
+                    sendNotification(title, message, url, date, R.drawable.min15_logo);
                 }
                 break;
 
             case ChooseNewspapper.TYPE_DELFI:
                 if(sharedPreferences.getBoolean("delfi_state", true)){
-                    sendNotification(title, message, R.drawable.delfi_logo);
+                    sendNotification(title, message, url, date, R.drawable.delfi_logo);
                 }
                 break;
 
             case ChooseNewspapper.TYPE_ALFA:
                 if(sharedPreferences.getBoolean("alfa_state", true)){
-                    sendNotification(title, message, R.drawable.alfa_logo);
+                    sendNotification(title, message, url, date, R.drawable.alfa_logo);
                 }
                 break;
 
             case ChooseNewspapper.TYPE_LRYTAS:
                 if(sharedPreferences.getBoolean("lrytas_state", true)){
-                    sendNotification(title, message, R.drawable.lrytas_logo);
+                    sendNotification(title, message, url, date, R.drawable.lrytas_logo);
                 }
                 break;
 
@@ -69,10 +71,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
 
-    private void sendNotification(String title, String message, int type) {
-        Intent intent = new Intent(this, StartingActivity.class);
+    private void sendNotification(String title, String message, String url, String date, int type) {
+        Intent intent = new Intent(this, WebViewActivity.class);
+        intent.putExtra("type", type);
+        intent.putExtra("title", title);
+        intent.putExtra("date", CheckingUtils.getDateInMillis(date));
+        intent.putExtra("url", url);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -88,6 +95,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(0 , notificationBuilder.build());
     }
 }

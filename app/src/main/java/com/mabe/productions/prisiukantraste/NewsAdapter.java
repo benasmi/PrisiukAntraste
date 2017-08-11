@@ -320,7 +320,14 @@ public class NewsAdapter extends  RecyclerView.Adapter<NewsAdapter.ViewHolder> i
 
                 String description = item.getDescription();
                 String image_url = item.getImageUrl();
-                String most_voted_title = item.getFirstTitle().getPoints() > item.getSecondTitle().getPoints() ? item.getFirstTitle().getTitle() : item.getSecondTitle().getTitle();
+
+                String most_voted_title = item.getFirstTitle().getTitle();
+
+                if(!item.getSecondTitle().getTitle().equals("")){
+                    most_voted_title = item.getFirstTitle().getPoints() > item.getSecondTitle().getPoints() ? item.getFirstTitle().getTitle() : item.getSecondTitle().getTitle();
+                }
+
+
                 String url = item.getUrl();
                 String titleCount = item.getTitleCount();
 
