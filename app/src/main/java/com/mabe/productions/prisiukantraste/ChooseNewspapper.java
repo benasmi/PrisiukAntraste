@@ -13,6 +13,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+
 
 public class ChooseNewspapper extends AppCompatActivity {
 

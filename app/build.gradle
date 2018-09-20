@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.mabe.productions.prisiukantraste"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 26
         multiDexEnabled true
         versionCode 5
         versionName "1.3"
